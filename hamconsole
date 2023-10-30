@@ -46,7 +46,7 @@ pat-direwolf () {
 	tmux split-window -h
 	tmux send-keys './pat-direwolf.sh' Enter
 
-	#tmux select-pane -t 1 
+	tmux select-pane -t 1 
 
 	tmux attach -t $SESSION
 }
@@ -61,6 +61,8 @@ pat-mobilinkd () {
 
 	tmux split-window -h
 	tmux send-keys './pat-mobilinkd.sh' Enter
+
+	tmux select-pane -t 1 
 
 	tmux attach -t $SESSION
 }

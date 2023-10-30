@@ -3,7 +3,8 @@
 
 
 # General 
-MYIP=`hostname -I | sed 's/ //g'`
+MYIP=`hostname -I | sed 's/ /,/g' | rev | cut -c2- | rev`
+MYHOST=`hostname -A | sed 's/ /,/g' | rev | cut -c2- | rev`
 SESSION=ham
 AXPORT=wl2k
 KISSTMP=/tmp/kisstnc
