@@ -32,7 +32,7 @@ Options are:
 
 ## Config
 
-config - File with the common variables and setting used by all the scripts
+`config` - File with the common variables and setting used by all the scripts
 
 
 
