@@ -1,0 +1,112 @@
+#!/bin/bash
+# Created by KD9EJQ
+
+##########
+# INIT 
+##########
+. ./config
+
+
+##########
+# FUNCTIONS 
+##########
+pre-flight-check () {
+	clear
+	if ! hash ${1} 2>/dev/null; then
+		echo "WARNING"
+		echo ""
+		echo "${1} is missing!"
+		echo " +--------------------------------------"
+		echo " |  sudo apt update"
+		echo " |  sudo apt install -y ${1}"
+		echo " +--------------------------------------"
+		read -p "Would you like to install now (y/n)? "
+		case $(echo $REPLY | tr '[A-Z]' '[a-z]') in
+			y|yes) sudo apt update; sudo apt install -y ${1} ;;
+			*)     echo "OK, we shall skip it, but things may break :-(" ;;
+		esac
+	fi
+}
+
+pat-only () {
+	# Just run Pat by itself
+	# Using the Internet (telnet)
+	# No need for tmux
+	pat http
+}
+
+pat-direwolf () {
+	tmux new-session -d -s ${SESSION}
+	tmux send-keys './message.sh' Enter
+
+	tmux split-window -v
+	tmux resize-pane -U 10
+	tmux send-keys './connect-direwolf.sh' Enter
+
+	tmux split-window -h
+	tmux send-keys './pat-direwolf.sh' Enter
+
+	#tmux select-pane -t 1 
+
+	tmux attach -t $SESSION
+}
+
+pat-mobilinkd () {
+	tmux new-session -d -s ${SESSION}
+	tmux send-keys './message.sh' Enter
+
+	tmux split-window -v
+	tmux resize-pane -U 10
+	tmux send-keys './connect-mobilinkd.sh' Enter
+
+	tmux split-window -h
+	tmux send-keys './pat-mobilinkd.sh' Enter
+
+	tmux attach -t $SESSION
+}
+
+kill-kiss () {
+	sudo killall kissattach
+}
+
+
+##########
+# MAIN
+##########
+
+# Check to verify all depend software is installed
+pre-flight-check whiptail
+pre-flight-check tmux
+pre-flight-check figlet
+
+# Check how big the current screen/terminal is
+# LINES=`tput lines`
+# COLUMNS=`tput cols`
+HEIGHT=`stty size | cut -d" " -f1`
+WIDTH=`stty size | cut -d" " -f2`
+
+declare -a SELECTION
+
+# OK, this is a little tricky...
+#   but I've added a left and right () before and after so the variable is
+#   interperated as an array.
+#
+#   example of a possible value
+#             $SELECTION=(create-alias update-upgrade options ssh-config)
+SELECTION=( $(whiptail \
+--title "Ham Radio Console Tools" \
+--notags \
+--menu "Ham radio console apps that use multiple windows with tmux." \
+${HEIGHT} ${WIDTH} $((HEIGHT-8)) \
+	"pat-only"		"Pat with Internet (telnet)" \
+	"pat-direwolf"		"Pat with Direwolf" \
+	"pat-mobilinkd"		"Pat with Mobilinkd (Bluetooth)" \
+	"kill-kiss"		"Kill all kiss* processes IDs" \
+	3>&1 1>&2 2>&3) )
+
+# Now loop through all the returned selections, which is stored in an array $SELECTION
+for i in "${SELECTION[@]}"
+do
+	$i
+done
+

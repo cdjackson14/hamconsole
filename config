@@ -1,0 +1,22 @@
+#!/usr/bin/bash
+# Config file for all scripts
+
+
+# General 
+MYIP=`hostname -I | sed 's/ //g'`
+SESSION=ham
+AXPORT=wl2k
+KISSTMP=/tmp/kisstnc
+
+# Pat specific
+PAT_FIG="Pat"
+
+# Direwolf specific
+DIREWOLF_FIG="Direwolf"
+
+# Mobilinkd specific
+MOBILINKD_FIG="Mobilinkd"
+RFNAME="Mobilinkd TNC3"
+RFDEV=/dev/rfcomm0
+RFMAC=34:81:F4:70:71:15
+RFCH=6
