@@ -5,7 +5,7 @@
 . ./config
 
 # MAIN
-figlet ${PAT_FIG} 
+figlet ${P_FIG} 
 
 # Check to see if the Direwolf symbolic link is active before continuing on...
 while [ ! -L ${KISSTMP} ]; do sleep .5; done

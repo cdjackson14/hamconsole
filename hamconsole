@@ -40,7 +40,7 @@ pat-direwolf () {
 	tmux send-keys './message.sh' Enter
 
 	tmux split-window -v
-	tmux resize-pane -U 10
+	tmux resize-pane -U 7 
 	tmux send-keys './connect-direwolf.sh' Enter
 
 	tmux split-window -h
@@ -56,7 +56,7 @@ pat-mobilinkd () {
 	tmux send-keys './message.sh' Enter
 
 	tmux split-window -v
-	tmux resize-pane -U 10
+	tmux resize-pane -U 7
 	tmux send-keys './connect-mobilinkd.sh' Enter
 
 	tmux split-window -h

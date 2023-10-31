@@ -5,7 +5,7 @@
 . ./config
 
 # MAIN
-figlet ${PAT_FIG} 
+figlet ${P_FIG} 
 # Check to see if the RF device has been connected
 while [ ! -e ${RFDEV} ]; do sleep .5; done
 

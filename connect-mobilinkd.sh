@@ -4,7 +4,7 @@
 # INIT
 . ./config
 
-figlet ${MOBILINKD_FIG}
+figlet ${M_FIG}
 echo Connecting to ${RFNAME}
 sudo rfcomm connect ${RFDEV} ${RFMAC} ${RFCH}
 
