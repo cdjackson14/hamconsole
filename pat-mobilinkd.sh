@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# Created by KD9EJQ
 # Run Pat after Direwolf has successfully started
 
 # INIT

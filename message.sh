@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# Created by KD9EJQ
 # Top message and help display
 
 # INIT
