@@ -37,7 +37,7 @@ pat-only () {
 
 pat-direwolf () {
 	tmux new-session -d -s ${SESSION}
-	tmux send-keys './message.sh' Enter
+	tmux send-keys './message.sh' Enter 
 
 	tmux split-window -v
 	tmux resize-pane -U 7 
