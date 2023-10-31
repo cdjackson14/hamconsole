@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# Top message and help display
 
 # INIT
 . ./config

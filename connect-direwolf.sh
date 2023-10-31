@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+# Connect to Direwolf
 
 # INIT
 . ./config
