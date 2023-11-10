@@ -48,4 +48,5 @@ cp ham.desktop ~/.local/share/applications/
 ### Sources:
 
 * Ham radio icon from https://icons8.com/icons/set/ham-radio
+* https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/
 
